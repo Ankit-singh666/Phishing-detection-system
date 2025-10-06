@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detection & Awareness System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ PhishGuard Pro</h1>
+            <p>Advanced Phishing Detection & Cybersecurity Awareness Platform</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('detector')">Email Detector</button>
+            <button class="tab" onclick="switchTab('url-checker')">URL Checker</button>
+            <button class="tab" onclick="switchTab('quiz')">Security Quiz</button>
+            <button class="tab" onclick="switchTab('guide')">Awareness Guide</button>
+        </div>
+
+        <!-- Email Detector Tab -->
+        <div id="detector" class="tab-content active">
+            <div class="detection-area">
+                <h2>📧 Email Analysis</h2>
+                <div class="input-group">
+                    <label for="sender-email">Sender Email Address:</label>
+                    <input type="email" id="sender-email" placeholder="example@company.com">
+                </div>
+                <div class="input-group">
+                    <label for="email-subject">Email Subject:</label>
+                    <input type="text" id="email-subject" placeholder="Enter email subject line">
+                </div>
+                <div class="input-group">
+                    <label for="email-content">Email Content:</label>
+                    <textarea id="email-content" rows="6" placeholder="Paste the email content here..."></textarea>
+                </div>
+                <button class="analyze-btn" onclick="analyzeEmail()">🔍 Analyze Email</button>
+                
+                <div id="email-result" class="result">
+                    <h3 id="email-result-title"></h3>
+                    <p id="email-result-message"></p>
+                    <div id="email-indicators" class="risk-indicators"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- URL Checker Tab -->
+        <div id="url-checker" class="tab-content">
+            <div class="detection-area">
+                <h2>🔗 URL Security Checker</h2>
+                <div class="input-group">
+                    <label for="url-input">Enter URL to Check:</label>
+                    <input type="url" id="url-input" placeholder="https://example.com">
+                </div>
+                <button class="analyze-btn" onclick="analyzeURL()">🔍 Check URL</button>
+                
+                <div id="url-result" class="result">
+                    <h3 id="url-result-title"></h3>
+                    <p id="url-result-message"></p>
+                    <div id="url-indicators" class="risk-indicators"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Quiz Tab -->
+        <div id="quiz" class="tab-content">
+            <div class="quiz-container">
+                <h2>🧠 Phishing Awareness Quiz</h2>
+                
+                <div class="quiz-question">
+                    <h3>1. Which of the following is a common sign of a phishing email?</h3>
+                    <ul class="quiz-options">
+                        <li><input type="radio" name="q1" value="a"> Professional company logo</li>
+                        <li><input type="radio" name="q1" value="b"> Urgent language demanding immediate action</li>
+                        <li><input type="radio" name="q1" value="c"> Personalized greeting with your full name</li>
+                        <li><input type="radio" name="q1" value="d"> Clear contact information</li>
+                    </ul>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>2. What should you do if you receive a suspicious email asking for personal information?</h3>
+                    <ul class="quiz-options">
+                        <li><input type="radio" name="q2" value="a"> Reply with the requested information</li>
+                        <li><input type="radio" name="q2" value="b"> Forward it to friends to warn them</li>
+                        <li><input type="radio" name="q2" value="c"> Delete it and report it as spam</li>
+                        <li><input type="radio" name="q2" value="d"> Click the link to verify legitimacy</li>
+                    </ul>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>3. Which URL is most likely to be suspicious?</h3>
+                    <ul class="quiz-options">
+                        <li><input type="radio" name="q3" value="a"> https://amazon.com/account</li>
+                        <li><input type="radio" name="q3" value="b"> https://amaz0n-security.net/verify</li>
+                        <li><input type="radio" name="q3" value="c"> https://smile.amazon.com</li>
+                        <li><input type="radio" name="q3" value="d"> https://aws.amazon.com</li>
+                    </ul>
+                </div>
+
+                <button class="analyze-btn" onclick="checkQuiz()">📊 Check Answers</button>
+                
+                <div id="quiz-result" class="quiz-result">
+                    <h3 id="quiz-score"></h3>
+                    <div id="quiz-feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Awareness Guide Tab -->
+        <div id="guide" class="tab-content">
+            <div class="guide-section">
+                <h2>📚 Phishing Awareness Guide</h2>
+                
+                <h3>🚨 Common Warning Signs</h3>
+                <div class="warning-signs">
+                    <div class="warning-card">
+                        <h4>Urgent Language</h4>
+                        <p>Phrases like "Act now!", "Limited time!", "Your account will be closed!" are designed to create panic and bypass critical thinking.</p>
+                    </div>
+                    <div class="warning-card">
+                        <h4>Generic Greetings</h4>
+                        <p>"Dear Customer" or "Dear User" instead of your actual name often indicates mass-sent phishing emails.</p>
+                    </div>
+                    <div class="warning-card">
+                        <h4>Suspicious Links</h4>
+                        <p>URLs that don't match the claimed sender or use URL shorteners to hide the real destination.</p>
+                    </div>
+                    <div class="warning-card">
+                        <h4>Poor Grammar/Spelling</h4>
+                        <p>Professional organizations typically have proper grammar. Multiple errors may indicate a scam.</p>
+                    </div>
+                    <div class="warning-card">
+                        <h4>Unexpected Attachments</h4>
+                        <p>Unsolicited attachments, especially .exe, .zip, or .doc files from unknown senders.</p>
+                    </div>
+                    <div class="warning-card">
+                        <h4>Requests for Information</h4>
+                        <p>Legitimate companies rarely ask for passwords, SSN, or credit card info via email.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 40px;">📧 Example: Phishing Email</h3>
+                <div class="example-email">
+                    <div class="example-header">
+                        From: security@<span class="highlight-suspicious">arnazon-security.net</span><br>
+                        Subject: <span class="highlight-suspicious">URGENT: Your Account Will Be Suspended!</span>
+                    </div>
+                    <p>Dear <span class="highlight-suspicious">Valued Customer</span>,</p>
+                    <p>We have detected <span class="highlight-suspicious">suspicious activity</span> on your account. Your account will be <span class="highlight-suspicious">suspended within 24 hours</span> unless you verify your information immediately.</p>
+                    <p><span class="highlight-suspicious">Click here to verify now: http://bit.ly/verify-account</span></p>
+                    <p>Please provide your username, password, and credit card information to maintain access.</p>
+                    <p>Thank you,<br>Amazon Security Team</p>
+                </div>
+
+                <h3>✅ Best Practices for Protection</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Verify the sender:</strong> Check email addresses carefully for misspellings or suspicious domains</li>
+                    <li><strong>Hover before clicking:</strong> Hover over links to see the actual destination URL</li>
+                    <li><strong>Use official websites:</strong> Type URLs directly into your browser instead of clicking links</li>
+                    <li><strong>Enable 2FA:</strong> Use two-factor authentication whenever possible</li>
+                    <li><strong>Keep software updated:</strong> Regular updates include security patches</li>
+                    <li><strong>Report suspicious emails:</strong> Forward phishing attempts to anti-phishing organizations</li>
+                    <li><strong>Trust your instincts:</strong> If something feels wrong, investigate further before taking action</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
